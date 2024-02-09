@@ -45,8 +45,6 @@ async fn main() -> Result<()> {
 }
 
 pub async fn create_stream(client: &ProtonClient) -> Result<()> {
-    //  Create a stream
-    // https://docs.timeplus.com/proton-create-stream
     client
         .execute("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
         .await

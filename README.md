@@ -2,11 +2,6 @@
 
 Exploring a proof of concept Rust client for [Proton / TimePlus]([url](https://www.timeplus.com/)https://www.timeplus.com/). 
 
-## Install ch2rs
-
-```
-cargo install ch2rs
-```
 
 ## Install proton
 
@@ -26,11 +21,89 @@ brew install proton
    For detailed usage and more information, check out the Timeplus documentation:
    https://docs.timeplus.com/
 
-## Run the client
+
+## Build a ProtonClient
+
+```Rust
+use proton::prelude::{ProtonClient, Result};
+
+const FN_NAME: &str = "[prepare]:";
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    println!("{} Start", FN_NAME);
+
+    println!("{}Build client", FN_NAME);
+    let client = ProtonClient::new("http://localhost:8123");
+
+    println!("{} Create stream if not exists", FN_NAME);
+    create_stream(&client)
+        .await
+        .expect("[main]: Failed to create Stream");
+
+    println!("{} Stop", FN_NAME);
+    Ok(())
+ }
+```
+
+
+## Run the client code example
+
+1) Create a stream and insert some data
 
 ```
-make run
+cargo run --bin prepare
 ```
+
+Expected output
+
+```
+[prepare]: Start
+[prepare]:Build client
+[prepare]: Create stream if not exists
+[prepare]:Insert data
+[prepare]:Count inserted data
+[prepare]:Inserted data: 1000
+[prepare]: Stop
+```
+
+2) Stream some data (fetch) and load all data at once (fetch_all)
+
+```
+cargo run --bin main
+```
+
+Expected output
+
+```
+[main]:Build client
+[main]:Fetch data
+MyRow { no: 500, name: "foo" }
+MyRow { no: 501, name: "foo" }
+MyRow { no: 502, name: "foo" }
+MyRow { no: 503, name: "foo" }
+MyRow { no: 504, name: "foo" }
+[main]:Fetch all data
+[MyRowOwned { no: 500, name: "foo" }, MyRowOwned { no: 501, name: "foo" }, MyRowOwned { no: 502, name: "foo" }, MyRowOwned { no: 503, name: "foo" }, MyRowOwned { no: 504, name: "foo" }]
+[main]: Stop
+```
+
+3) Cleanup and delete stream
+
+
+```
+cargo run --bin cleanup
+```
+
+Expected output
+
+```
+[prepare]: Start
+[prepare]:Build client
+[prepare]: Delete Stream
+[prepare]: Stop
+```
+
 
 ## Cargo & Make
 
