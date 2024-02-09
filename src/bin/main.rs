@@ -1,4 +1,4 @@
-use clickhouse::{error::Result, sql, Client, Row};
+use clickhouse::{error::Result, Client, Row};
 use serde::{Deserialize, Serialize};
 
 

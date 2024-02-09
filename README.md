@@ -25,3 +25,27 @@ brew install proton
 
    For detailed usage and more information, check out the Timeplus documentation:
    https://docs.timeplus.com/
+
+## Run the client
+
+```
+make run
+```
+
+## Cargo & Make
+
+Make sure all cargo tools are installed. To do so, just run ```make install```
+After all tools have been installed, the following commands are ready to use.
+```
+make
+    make build   	Builds the code base incrementally (fast) for dev.
+    make check   	Checks the code base for security vulnerabilities.
+    make clean   	Cleans generated files and folders.
+    make fix   		Fixes linting issues as reported by clippy.
+    make format   	Formats call code according to cargo fmt style.
+    make install   	Tests and installs all make script dependencies.
+    make release   	Builds the code base for release.
+    make test   	Tests across all crates.
+    make run   		Runs the default binary.
+    make update   	Update rust, pull git, and build the project.
+```

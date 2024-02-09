@@ -3,7 +3,6 @@ SHELL := /usr/bin/env bash
 
 .PHONY: help
 help:
-	@echo ' Development:'
 	@echo '    make build   	Builds the code base incrementally (fast) for dev.'
 	@echo '    make check   	Checks the code base for security vulnerabilities.'
 	@echo '    make clean   	Cleans generated files and folders.'
@@ -11,7 +10,7 @@ help:
 	@echo '    make format   	Formats call code according to cargo fmt style.'
 	@echo '    make install   	Tests and installs all make script dependencies.'
 	@echo '    make release   	Builds the code base for release.'
-	@echo '    make test   		Tests across all crates.'
+	@echo '    make test   	Tests across all crates.'
 	@echo '    make run   		Runs the default binary.'
 	@echo '    make update   	Update rust, pull git, and build the project.'
 
