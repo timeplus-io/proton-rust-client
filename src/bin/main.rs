@@ -14,52 +14,52 @@ struct MyRowOwned {
     name: String,
 }
 
-const FN_NAME: &str = "[main]: ";
+const FN_NAME: &str = "[main]:";
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("{}start", FN_NAME);
+    println!("{} Start", FN_NAME);
 
     println!("{}Build client", FN_NAME);
     let client = Client::default().with_url("http://localhost:8123");
 
-    println!("{}Create table", FN_NAME);
-    ddl(&client)
+    println!("{} Create table", FN_NAME);
+    create_stream(&client)
         .await
-        .expect("[main]: Failed to create table");
+        .expect("[main]: Failed to create Stream");
 
-    println!("{}Insert data", FN_NAME);
-    insert(&client)
+    // println!("{}Insert data", FN_NAME);
+    // insert(&client)
+    //     .await
+    //     .expect("[main]: Failed to insert data");
+    //
+    // println!("{}Count inserted data", FN_NAME);
+    // let count = select_count(&client)
+    //     .await
+    //     .expect("[main/count]: Failed to count inserted data");
+    //
+    // println!("{}count data: {}", FN_NAME, count);
+
+    println!("{} Delete Stream", FN_NAME);
+    delete_stream(&client)
         .await
-        .expect("[main]: Failed to insert data");
+        .expect("[main]: Failed to delete Stream");
 
-    println!("{}Count inserted data", FN_NAME);
-    let count = select_count(&client)
-        .await
-        .expect("[main/count]: Failed to count inserted data");
-
-    println!("{}count data: {}", FN_NAME, count);
-
-    println!("{}stop", FN_NAME);
+    println!("{} Stop", FN_NAME);
     Ok(())
 }
 
 
-async fn ddl(client: &Client) -> Result<()> {
+async fn create_stream(client: &Client) -> Result<()> {
     client
-        .query("DROP TABLE IF EXISTS some")
+        .query("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
         .execute()
         .await
-        .expect("[main/ddl]: Failed to drop table");
+}
 
+async fn delete_stream(client: &Client) -> Result<()> {
     client
-        .query(
-            "
-            CREATE TABLE some(no UInt32, name LowCardinality(String))
-            ENGINE = MergeTree
-            ORDER BY no
-        ",
-        )
+        .query("DROP STREAM some")
         .execute()
         .await
 }
