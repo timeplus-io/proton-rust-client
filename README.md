@@ -1,6 +1,6 @@
 # Proton Rust Client
 
-Exploring aa Rust client for [Proton / TimePlus]([url](https://www.timeplus.com/)https://www.timeplus.com/). 
+Exploring a proof of concept Rust client for [Proton / TimePlus]([url](https://www.timeplus.com/)https://www.timeplus.com/). 
 
 ## Install ch2rs
 

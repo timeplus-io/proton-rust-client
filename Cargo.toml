@@ -5,8 +5,18 @@ edition = "2021"
 
 
 [[bin]]
+name = "prepare"
+path = "src/bin/prepare.rs"
+
+
+[[bin]]
 name = "main"
 path = "src/bin/main.rs"
+
+
+[[bin]]
+name = "cleanup"
+path = "src/bin/cleanup.rs"
 
 
 [lib]
@@ -15,10 +25,9 @@ path = "src/lib/mod.rs"
 
 
 [dependencies]
-clickhouse = "0.11"
+clickhouse = { version = "0.11", features = ["watch"] }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 serde = { version = "1.0.196", features = ["derive"] }
-
 
 
 [dev-dependencies]

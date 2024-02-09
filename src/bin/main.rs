@@ -1,90 +1,84 @@
-use clickhouse::{error::Result, Client, Row};
+use clickhouse::Row;
 use serde::{Deserialize, Serialize};
+use proton::prelude::Result;
+use proton::{ProtonClient};
 
 
 #[derive(Debug, Row, Serialize, Deserialize)]
-struct MyRow<'a> {
+pub struct MyRow<'a> {
     no: u32,
     name: &'a str,
 }
 
+impl<'a> MyRow<'a> {
+    pub fn new(no: u32, name: &'a str) -> Self {
+        Self { no, name }
+    }
+}
+
 #[derive(Debug, Row, Serialize, Deserialize)]
-struct MyRowOwned {
+pub struct MyRowOwned {
     no: u32,
     name: String,
 }
+
+impl MyRowOwned {
+    pub fn new(no: u32, name: String) -> Self {
+        Self { no, name }
+    }
+    pub fn no(&self) -> u32 {
+        self.no
+    }
+    pub fn name(&self) -> &str {
+        &self.name
+    }
+}
+
 
 const FN_NAME: &str = "[main]:";
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("{} Start", FN_NAME);
-
     println!("{}Build client", FN_NAME);
-    let client = Client::default().with_url("http://localhost:8123");
+    let client = ProtonClient::new("http://localhost:8123");
 
-    println!("{} Create table", FN_NAME);
-    create_stream(&client)
+
+    println!("{}Fetch data", FN_NAME);
+    fetch(&client)
         .await
-        .expect("[main]: Failed to create Stream");
+        .expect("[main/fetch]: Failed to fetch data");
 
-    // println!("{}Insert data", FN_NAME);
-    // insert(&client)
-    //     .await
-    //     .expect("[main]: Failed to insert data");
-    //
-    // println!("{}Count inserted data", FN_NAME);
-    // let count = select_count(&client)
-    //     .await
-    //     .expect("[main/count]: Failed to count inserted data");
-    //
-    // println!("{}count data: {}", FN_NAME, count);
-
-    println!("{} Delete Stream", FN_NAME);
-    delete_stream(&client)
+    println!("{}Fetch all data", FN_NAME);
+    fetch_all(&client)
         .await
-        .expect("[main]: Failed to delete Stream");
+        .expect("[main/fetch_all]: Failed to fetch data");
 
     println!("{} Stop", FN_NAME);
     Ok(())
 }
 
 
-async fn create_stream(client: &Client) -> Result<()> {
-    client
-        .query("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
-        .execute()
+pub async fn fetch(client: &ProtonClient) -> clickhouse::error::Result<()> {
+    let mut cursor = client
+        .fetch::<MyRow<'_>>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
         .await
-}
+        .expect("[main/fetch]: Failed to fetch data");
 
-async fn delete_stream(client: &Client) -> Result<()> {
-    client
-        .query("DROP STREAM some")
-        .execute()
-        .await
-}
-
-async fn insert(client: &Client) -> Result<()> {
-    let mut insert = client
-        .insert("some")
-        .expect("[main/insert]: Failed to build inserter for table some");
-
-    for i in 0..1000 {
-        insert
-            .write(&MyRow { no: i, name: "foo" })
-            .await
-            .expect("[main/insert]: Failed to insert row into table some");
+    while let Some(row) = cursor.next().await? {
+        println!("{row:?}");
     }
 
-    insert.end().await
+    Ok(())
 }
 
-async fn select_count(client: &Client) -> Result<u64> {
-    let count = client
-        .query("SELECT count() FROM some")
-        .fetch_one::<u64>()
-        .await
-        .expect("[main/select_count]: Failed to fetch count()");
 
-    Ok(count)
+pub async fn fetch_all(client: &ProtonClient) -> clickhouse::error::Result<()> {
+    let vec = client
+        .fetch_all::<MyRowOwned>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
+        .await
+        .expect("[main/fetch_all]: Failed to fetch all");
+
+    println!("{vec:?}");
+
+    Ok(())
 }
