@@ -87,6 +87,8 @@ async fn main() -> Result<()> {
 
 To see more examples of using Proton, check out the [examples](examples) folder.
 
+Check out the proton [documentation on the SQL Query syntax](https://docs.timeplus.com/query-syntax). 
+
 
 ## Documentation
 
