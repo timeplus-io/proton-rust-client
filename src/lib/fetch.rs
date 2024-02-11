@@ -20,7 +20,9 @@ impl ProtonClient {
     ///     name: &'a str,
     /// }
     ///
-    /// let mut cursor = ProtonClient::default()
+    /// let client = ProtonClient::new("http://localhost:8123");
+    ///
+    /// let mut cursor = client
     ///     .query("SELECT ?fields FROM some WHERE no BETWEEN 0 AND 1")
     ///     .fetch::<MyRow<'_>>()?;
     ///
@@ -38,8 +40,27 @@ impl ProtonClient {
         };
     }
 
-    ///Executes the query and returns all the generated results, collected into a Vec.
+    /// Executes the query and returns all the generated results, collected into a Vec.
     /// Note that T must be owned.
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if:
+    ///
+    /// - The API call fails
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// use proton::ProtonClient;
+    ///
+    /// let client = ProtonClient::new("http://localhost:8123");
+    ///
+    /// let query = "SELECT ?fields FROM some WHERE no BETWEEN 0 AND 1";
+    /// let data = client.fetch_all(query).unwrap();
+    ///
+    /// println!("Received {} records", data.len());
+    /// ```
     pub async fn fetch_all<T: Row>(&self, query: &str) -> Result<Vec<T>>
         where
             T: Row + for<'b> Deserialize<'b>,
@@ -55,6 +76,24 @@ impl ProtonClient {
     /// Executes the query and returns just a single row.
     ///
     /// Note that `T` must be owned.
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if:
+    ///
+    /// - The API call fails
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// use proton::ProtonClient;
+    ///
+    /// let client = ProtonClient::new("http://localhost:8123");
+    /// let query = "select count() from table(table_name)";
+    /// let item = client.fetch_one(query).unwrap();
+    ///
+    /// println!("Single result: {:#?}", item);
+    /// ```
     pub async fn fetch_one<T>(self, query: &str) -> Result<T>
         where
             T: Row + for<'b> Deserialize<'b>,
@@ -70,6 +109,28 @@ impl ProtonClient {
     /// Executes the query and returns at most one row.
     ///
     /// Note that `T` must be owned.
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if:
+    ///
+    /// - The API call fails
+    ///
+    /// # Example
+    ///
+    /// ```rust
+    /// use proton::ProtonClient;
+    ///
+    /// let client = ProtonClient::new("http://localhost:8123");
+    /// let item_id = 42;
+    /// let query = "SELECT ?fields FROM some WHERE no = 42";
+    /// let item = client.fetch_optional(query).unwrap();
+    ///
+    /// match item {
+    ///     Some(item) => println!("Fetched: {:#?}", item),
+    ///     None => println!("No item with id {}", item_id),
+    /// }
+    /// ```
     pub async fn fetch_optional<T>(self, query: &str) -> Result<Option<T>>
         where
             T: Row + for<'b> Deserialize<'b>,
