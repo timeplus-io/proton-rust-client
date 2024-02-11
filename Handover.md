@@ -2,11 +2,11 @@
 [//]: # (SPDX-License-Identifier: Apache-2.0)
 [//]: # (---)
 
-# Handover 
+# Handover
 
 Suggested steps to do after the repo transfer:
 
-## Add the active maintainer 
+## Add the active maintainer
 
 Add the new / active maintainer to the following files: MAINTAINERS.md, CODEOWNERS, and CONTRIBUTING.md.
 
@@ -16,7 +16,7 @@ Add the new / active maintainer to the following files: MAINTAINERS.md, CODEOWNE
 
 ## Verify CI / Github actions:
 
-Currently, all GH actions trigger on pull request, unless stated otherwise, assuming[ branch protection is in place](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) (as it should). 
+Currently, all GH actions trigger on pull request, unless stated otherwise, assuming[ branch protection is in place](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) (as it should).
 
 The following GH actions are pre-configured:
 
@@ -37,8 +37,8 @@ Rust packages are published to the crates.io registry. To do so, the following s
 1) Ensure all changes are comited and pushed to origin. This is important otherwise publish will abort.
 2) Verify the pre-defined meta data in Cargo.toml. Repo & homepage is already set to https://github.com/timeplus-io/proton-rust-client
 3) Create a free account on https://crates.io/
-4) Create an API token in the dashboard
-5) Login locally, from a terminal: ```cargo login``` Then at the prompt put in the token specified. 
+4) Create an API token on https://crates.io/settings/tokens
+5) Login locally, from a terminal: ```cargo login``` Then at the prompt put in the token specified.
 6) Conduct a dry run to see if everything is correct: ```cargo publish --dry-run```
 7) When the dry run completes without error, publish the first version: ```cargo publish```
 
@@ -48,9 +48,9 @@ https://doc.rust-lang.org/cargo/reference/publishing.html
 
 ## Enable auto-release
 
-The conventional Rust release process requires a fair amount of manual steps, such as bumping up version number, 
+The conventional Rust release process requires a fair amount of manual steps, such as bumping up version number,
 adding new git tags, generating changelog, publishing to crates.io etc. For full automation, the release-plz system
-has already been pre-configured. 
+has already been pre-configured.
 
 Release-plz automates your release process:
 
@@ -64,10 +64,10 @@ Release-plz updates your packages with a release Pull Request based on:
 * API breaking changes (detected by cargo-semver-checks).
 
 To enable the release-plz, edit the rust-release file in .github/workflows, uncomment the release-plz section,
-and add your crates.io API token as a Github secret. 
+and add your crates.io API token as a Github secret.
 
 Once the release-plz is enabled, every push to main is added to a generated release PR. When the release PR
-is merged, a new Github release is generated fully automatically, a new version is 
+is merged, a new Github release is generated fully automatically, a new version is
 published to the cargo registry, and the documentation is uploaded to rustdocs.org.
 
 For details on how to configure release-plz, consult the documentation:
