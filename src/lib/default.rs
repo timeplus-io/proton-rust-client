@@ -5,7 +5,7 @@ impl Default for ProtonClient {
     ///
     /// The default configuration includes:
     ///
-    /// - Base URL set to the Proton production API endpoint
+    /// - Default URL is set to http://localhost:8123
     ///
     /// # Returns
     ///
