@@ -6,6 +6,7 @@ help:
 	@echo '    make build   	Builds the code base incrementally (fast) for dev.'
 	@echo '    make check   	Checks the code base for security vulnerabilities.'
 	@echo '    make clean   	Cleans generated files and folders.'
+	@echo '    make doc   		Builds, tests, and opens api docs in a browser.'
 	@echo '    make fix   		Fixes linting issues as reported by clippy.'
 	@echo '    make format   	Formats call code according to cargo fmt style.'
 	@echo '    make install   	Tests and installs all make script dependencies.'
@@ -31,6 +32,11 @@ check:
 .PHONY: clean
 clean:
 	@source scripts/clean.sh
+
+
+.PHONY: doc
+doc:
+	@source scripts/doc.sh
 
 
 .PHONY: fix

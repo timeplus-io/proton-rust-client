@@ -14,10 +14,10 @@ if the automatic install fails, the script will show a link with further install
 After all dependencies have been installed, the following commands are ready to use.
 
 ```text 
-make
     make build   	Builds the code base incrementally (fast) for dev.
     make check   	Checks the code base for security vulnerabilities.
     make clean   	Cleans generated files and folders.
+    make doc   		Builds, tests, and opens api docs in a browser.
     make fix   		Fixes linting issues as reported by clippy.
     make format   	Formats call code according to cargo fmt style.
     make install   	Tests and installs all make script dependencies.
