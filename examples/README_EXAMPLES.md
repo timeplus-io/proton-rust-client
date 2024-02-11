@@ -1,25 +1,30 @@
 
 
-#  Examples for Rust Client for Proton 
- 
+#  Examples for Rust Client for Proton
 
-## Install proton
 
+## Install Proton
+
+### As a single binary
+
+On Linux or Mac, you can install it via `curl https://install.timeplus.com | sh`
+
+On Mac, you can also install it via `brew install proton`
+
+After you get the `proton` binary, you can start the Proton server via `proton server start`
+
+In a separate terminal, connect to the server via `proton client` (Note: If you encounter a 'connection refused' error, use: proton client --host 127.0.0.1)
+
+### As a Docker container
+
+```bash
+docker run -d --pull always --name proton ghcr.io/timeplus-io/proton:latest
 ```
-brew install proton
-```
 
-1. Start the Proton server:
-   $ proton server start
+Proton is automatically started. Open the terminal of the container, and run `proton client`
 
-2. In a separate terminal, connect to the server:
-   $ proton client
-   (Note: If you encounter a 'connection refused' error, use: proton client --host 127.0.0.1)
 
-3. To terminate the server, press ctrl+c in the server terminal.
-
-   For detailed usage and more information, check out the Timeplus documentation:
-   https://docs.timeplus.com/
+For detailed usage and more information, check out the documentation: https://docs.timeplus.com/proton
 
 
 ## Install ProtonClient
@@ -123,4 +128,3 @@ Expected output
 [prepare]: Delete Stream
 [prepare]: Stop
 ```
-
