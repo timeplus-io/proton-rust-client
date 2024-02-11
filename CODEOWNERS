@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 
 # Lines starting with '#' are comments.
 # Each line is a file pattern followed by one or more owners.
@@ -14,4 +14,4 @@
 # This should make it easy to add new rules without breaking existing ones.
 
 # Global rule:
-# *           @ADD_CODEOWNERS_HERE
+*           marvin-hansen jovezhong
