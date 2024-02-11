@@ -1,5 +1,8 @@
-# Handover 
+[//]: # (---)
+[//]: # (SPDX-License-Identifier: Apache-2.0)
+[//]: # (---)
 
+# Handover 
 
 Suggested steps to do after the repo transfer:
 

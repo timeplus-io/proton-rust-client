@@ -1,3 +1,7 @@
+[//]: # (---)
+[//]: # (SPDX-License-Identifier: Apache-2.0)
+[//]: # (---)
+
 ## 🛠️ Cargo & Make
 
 Cargo works as expected, but in addition to cargo, a makefile exists
