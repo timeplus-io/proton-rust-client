@@ -10,6 +10,8 @@ Proton is a streaming SQL engine, a fast and lightweight alternative to Apache F
 
 The initial version(0.1.0) of the client was written by [Marvin Hansen](https://github.com/marvin-hansen). Thanks for the contribution.
 
+This client uses https://crates.io/crates/clickhouse as a dependency.
+
 ## Install Proton
 
 ### As a single binary

@@ -6,12 +6,12 @@ rust-version = "1.65"
 readme = "README.md"
 license = "Apache-2.0"
 
-authors = ["Marvin Hansen <marvin.hansen@gmail.com>", ]
-description = "Client for the Proton / TimePlus SQL streaming engine"
+authors = ["Marvin Hansen <marvin.hansen@gmail.com>"]
+description = "Client for Timeplus Proton, a streaming SQL engine"
 documentation = "https://docs.rs/proton_client"
 homepage = "https://github.com/timeplus-io/proton-rust-client"
 repository = "https://github.com/timeplus-io/proton-rust-client"
-keywords = ["proton", "timeplus", "streaming", "database", "timeseries"]
+keywords = ["proton", "timeplus", "streaming", "sql", "database", "timeseries"]
 
 [lib]
 name = "proton_client"
@@ -35,7 +35,7 @@ path = "examples/remove/main.rs"
 
 [dependencies]
 clickhouse = { version = "0.11", features = ["watch"] }
-clickhouse-derive = { version = "0.1"}
+clickhouse-derive = { version = "0.1" }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 serde = { version = "1.0.196", features = ["derive"] }
 
