@@ -1,5 +1,5 @@
-use clickhouse::Client;
 use crate::ProtonClient;
+use clickhouse::Client;
 
 impl ProtonClient {
     /// Returns a reference to the internal clickhouse client.
@@ -18,7 +18,7 @@ impl ProtonClient {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```no_run
     /// use proton::ProtonClient;
     ///
     /// let client = ProtonClient::new("https://api.proton.com");

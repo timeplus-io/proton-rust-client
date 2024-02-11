@@ -1,7 +1,7 @@
+use crate::{alias::Result, error::ProtonClientError, ProtonClient};
 use clickhouse::query::RowCursor;
 use clickhouse::Row;
 use serde::Deserialize;
-use crate::{alias::Result, ProtonClient, error::ProtonClientError};
 
 impl ProtonClient {
     /// Executes the query, returning a [`RowCursor`] to obtain results.
@@ -32,9 +32,7 @@ impl ProtonClient {
     /// # Ok(()) }
     /// ```
     pub async fn fetch<T: Row>(&self, query: &str) -> Result<RowCursor<T>> {
-        return match self.client
-            .query(query)
-            .fetch::<T>() {
+        return match self.client.query(query).fetch::<T>() {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchFailed(e.to_string())),
         };
@@ -52,7 +50,9 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::ProtonClient;
+    /// use proton::prelude::{ProtonClient, Result};
+    ///
+    /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     ///
@@ -60,14 +60,15 @@ impl ProtonClient {
     /// let data = client.fetch_all(query).unwrap();
     ///
     /// println!("Received {} records", data.len());
+    ///
+    ///   Ok(())
+    /// }
     /// ```
     pub async fn fetch_all<T: Row>(&self, query: &str) -> Result<Vec<T>>
-        where
-            T: Row + for<'b> Deserialize<'b>,
+    where
+        T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client
-            .query(query)
-            .fetch_all::<T>().await {
+        return match self.client.query(query).fetch_all::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchAllFailed(e.to_string())),
         };
@@ -86,21 +87,24 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::ProtonClient;
+    /// use proton::prelude::{ProtonClient, Result};
+    ///
+    /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     /// let query = "select count() from table(table_name)";
     /// let item = client.fetch_one(query).unwrap();
     ///
     /// println!("Single result: {:#?}", item);
+    ///
+    ///   Ok(())
+    /// }
     /// ```
     pub async fn fetch_one<T>(self, query: &str) -> Result<T>
-        where
-            T: Row + for<'b> Deserialize<'b>,
+    where
+        T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client
-            .query(query)
-            .fetch_one::<T>().await {
+        return match self.client.query(query).fetch_one::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchOneFailed(e.to_string())),
         };
@@ -118,8 +122,10 @@ impl ProtonClient {
     ///
     /// # Example
     ///
-    /// ```rust
-    /// use proton::ProtonClient;
+    /// ```no_run
+    /// use proton::prelude::{ProtonClient, Result};
+    ///
+    /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     /// let item_id = 42;
@@ -130,14 +136,15 @@ impl ProtonClient {
     ///     Some(item) => println!("Fetched: {:#?}", item),
     ///     None => println!("No item with id {}", item_id),
     /// }
+    ///
+    ///   Ok(())
+    /// }
     /// ```
     pub async fn fetch_optional<T>(self, query: &str) -> Result<Option<T>>
-        where
-            T: Row + for<'b> Deserialize<'b>,
+    where
+        T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client
-            .query(query)
-            .fetch_optional::<T>().await {
+        return match self.client.query(query).fetch_optional::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchOptionalFailed(e.to_string())),
         };

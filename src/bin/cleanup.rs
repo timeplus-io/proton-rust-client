@@ -1,6 +1,5 @@
 use proton::prelude::{ProtonClient, Result};
 
-
 const FN_NAME: &str = "[prepare]:";
 
 #[tokio::main]
@@ -23,7 +22,5 @@ async fn main() -> Result<()> {
 pub async fn delete_stream(client: &ProtonClient) -> Result<()> {
     //  Drop a stream
     // https://docs.timeplus.com/proton-drop-stream
-    client
-        .execute("DROP STREAM some")
-        .await
+    client.execute_query("DROP STREAM some").await
 }

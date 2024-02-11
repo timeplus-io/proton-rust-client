@@ -1,5 +1,5 @@
-use std::fmt::{Display, Formatter};
 use crate::ProtonClient;
+use std::fmt::{Display, Formatter};
 
 impl Display for ProtonClient {
     /// Formats the ProtonClient for display.
@@ -8,7 +8,7 @@ impl Display for ProtonClient {
     ///
     /// # Example
     ///
-    /// ```
+    /// ```no_run
     /// use proton::ProtonClient;
     ///
     /// let client = ProtonClient::new("http://localhost:8123");

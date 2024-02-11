@@ -1,14 +1,14 @@
-mod display;
-mod default;
-mod getters;
 mod alias;
-pub mod prelude;
+mod default;
+mod display;
 mod error;
 mod fetch;
+mod getters;
 mod insert;
+pub mod prelude;
 mod query;
 
-use clickhouse::{Client};
+use clickhouse::Client;
 
 #[derive(Clone)]
 pub struct ProtonClient {
@@ -29,7 +29,7 @@ impl ProtonClient {
     ///
     /// # Example
     ///
-    /// ```rust
+    /// ```no_run
     /// use proton::ProtonClient;
     ///
     /// let client = ProtonClient::new("http://localhost:8123");

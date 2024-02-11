@@ -1,8 +1,7 @@
 use clickhouse::Row;
-use serde::{Deserialize, Serialize};
 use proton::prelude::Result;
-use proton::{ProtonClient};
-
+use proton::ProtonClient;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Row, Serialize, Deserialize)]
 pub struct MyRow<'a> {
@@ -34,14 +33,12 @@ impl MyRowOwned {
     }
 }
 
-
 const FN_NAME: &str = "[main]:";
 
 #[tokio::main]
 async fn main() -> Result<()> {
     println!("{}Build client", FN_NAME);
     let client = ProtonClient::new("http://localhost:8123");
-
 
     println!("{}Fetch data", FN_NAME);
     fetch(&client)
@@ -57,7 +54,6 @@ async fn main() -> Result<()> {
     Ok(())
 }
 
-
 pub async fn fetch(client: &ProtonClient) -> clickhouse::error::Result<()> {
     let mut cursor = client
         .fetch::<MyRow<'_>>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
@@ -70,7 +66,6 @@ pub async fn fetch(client: &ProtonClient) -> clickhouse::error::Result<()> {
 
     Ok(())
 }
-
 
 pub async fn fetch_all(client: &ProtonClient) -> clickhouse::error::Result<()> {
     let vec = client

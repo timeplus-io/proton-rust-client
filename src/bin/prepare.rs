@@ -1,6 +1,5 @@
-use clickhouse::Row;
+use proton::prelude::{ProtonClient, Result, Row};
 use serde::{Deserialize, Serialize};
-use proton::prelude::{Result, ProtonClient};
 
 const FN_NAME: &str = "[prepare]:";
 
@@ -46,7 +45,7 @@ async fn main() -> Result<()> {
 
 pub async fn create_stream(client: &ProtonClient) -> Result<()> {
     client
-        .execute("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
+        .execute_query("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
         .await
 }
 
@@ -69,7 +68,8 @@ pub async fn insert(client: &ProtonClient) -> Result<()> {
 }
 
 pub async fn select_count(client: &ProtonClient) -> Result<u64> {
-    let count = client.clone()
+    let count = client
+        .clone()
         .fetch_one("select count() from table(some)")
         .await
         .expect("[main/select_count]: Failed to fetch count()");
