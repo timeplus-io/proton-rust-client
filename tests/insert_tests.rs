@@ -1,12 +1,11 @@
 use clickhouse_derive::Row;
-use serde::{Deserialize, Serialize};
 use proton::ProtonClient;
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Row, Serialize, Deserialize)]
 pub struct MyRow {
     name: String,
 }
-
 
 #[tokio::test]
 async fn test_insert() {

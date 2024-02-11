@@ -10,7 +10,6 @@ async fn test_client() {
 
 #[tokio::test]
 async fn test_url() {
-
     let url = "https://api.proton.com";
     let client = ProtonClient::new(url);
 
