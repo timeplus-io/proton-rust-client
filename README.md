@@ -1,6 +1,10 @@
-# Proton Rust Client
 
-Exploring a proof of concept Rust client for [Proton / TimePlus]([url](https://www.timeplus.com/)https://www.timeplus.com/). 
+
+#  Rust Client for Proton SQL Streaming Engine
+ 
+Rust client for [Proton / TimePlus]([url](https://www.timeplus.com/)https://www.timeplus.com/). 
+
+Proton is a streaming SQL engine, a fast and lightweight alternative to Apache Flink, 🚀 powered by ClickHouse. It enables developers to solve streaming data processing, routing and analytics challenges from Apache Kafka, Redpanda and more sources, and send aggregated data to the downstream systems. Proton is the core engine of [Timeplus](https://timeplus.com), which is a cloud native streaming analytics platform.
 
 
 ## Install proton
@@ -22,7 +26,27 @@ brew install proton
    https://docs.timeplus.com/
 
 
-## Build a ProtonClient
+## Install ProtonClient
+
+Add the following to your Cargo.toml:
+
+```
+[dependencies]
+proton_client = { git = "https://github.com/marvin-hansen/proton-rust-client.git" }
+```
+
+[//]: # ( After Crate release on crates.io)
+
+[//]: # (```)
+
+[//]: # ([dependencies])
+
+[//]: # (proton_client =  { version = "0.1.0"})
+
+[//]: # (```)
+
+
+## Use ProtonClient
 
 ```Rust
 use proton::prelude::{ProtonClient, Result};
