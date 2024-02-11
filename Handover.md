@@ -67,7 +67,8 @@ To enable the release-plz, edit the rust-release file in .github/workflows, unco
 and add your crates.io API token as a Github secret. 
 
 Once the release-plz is enabled, every push to main is added to a generated release PR. When the release PR
-is merged, a new release is fully automatically published to the cargo registry and the documentation is uploaded to rustdocs.org.
+is merged, a new Github release is generated fully automatically, a new version is 
+published to the cargo registry, and the documentation is uploaded to rustdocs.org.
 
 For details on how to configure release-plz, consult the documentation:
 https://github.com/MarcoIeni/release-plz
