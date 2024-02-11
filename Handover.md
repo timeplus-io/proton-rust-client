@@ -6,10 +6,13 @@
 
 Suggested steps to do after the repo transfer:
 
+## Add the active maintainer 
+
+Add the new / active maintainer to the following files: MAINTAINERS.md, CODEOWNERS, and CONTRIBUTING.md.
+
 ## Update Readme:
 - Updated Readme with logo etc.
 - Update missing links in Readme. These are links to issue tracker and wiki. Run ctr-F and search for FIXLINK to find them all
-
 
 ## Verify CI / Github actions:
 
