@@ -15,6 +15,11 @@ pub enum ProtonClientError {
     /// This variant wraps the error message.
     InsertFailed(String),
 
+    /// An error occurred during a bulk insert operation.
+    ///
+    /// This variant wraps the error message.
+    InserterFailed(String),
+
     /// An error occurred while fetching data.
     ///
     /// This variant wraps the error message.
@@ -46,6 +51,9 @@ impl Display for ProtonClientError {
             }
             ProtonClientError::InsertFailed(msg) => {
                 write!(f, "[ProtonClient]: Insert failed with error: {}", msg)
+            }
+            ProtonClientError::InserterFailed(msg) => {
+                write!(f, "[ProtonClient]: Inserter failed with error: {}", msg)
             }
             ProtonClientError::FetchFailed(msg) => {
                 write!(f, "[ProtonClient]: Fetch failed with error: {}", msg)
