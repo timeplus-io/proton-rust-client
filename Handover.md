@@ -23,7 +23,7 @@ THe following GH actions are pre-configured:
 - audit - security audit against a DB of all known vulnerabilities. Runs on every PR. Active by default.
 - linter / clippy - Checks against a massive database of known Rust lints. Runs on every PR. Active by default.
 - test - Runs all uni tests and all doc tests unless marked as no_run. Runs on every PR. Active by default.
-- release - auto release, disabled. See below.
+- release - auto release, disabled. Once enabled, runs on every push to main. For configuration, see below.
 
 For a reference of Rust CI configs, please consult the documentation:
 
@@ -66,7 +66,7 @@ Release-plz updates your packages with a release Pull Request based on:
 To enable the release-plz, edit the rust-release file in .github/workflows, uncomment the release-plz section,
 and add your crates.io API token as a Github secret. 
 
-Once the release-plz is enabled, every merged PR is added to an automatically generated release PR. When the release PR
+Once the release-plz is enabled, every push to main is added to a generated release PR. When the release PR
 is merged, a new release is fully automatically published to the cargo registry and the documentation is uploaded to rustdocs.org.
 
 For details on how to configure relese-plz, consult the documentation:
