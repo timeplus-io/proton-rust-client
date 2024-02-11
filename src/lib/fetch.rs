@@ -14,7 +14,7 @@ impl ProtonClient {
     ///
     ///  async fn example() -> Result<()> {
     ///
-    /// #[derive(clickhouse::Row, serde::Deserialize)]
+    /// #[derive(Debug, clickhouse::Row, serde::Deserialize)]
     /// struct MyRow<'a> {
     ///     no: u32,
     ///     name: &'a str,
@@ -27,7 +27,7 @@ impl ProtonClient {
     ///     .await
     ///     .expect("[main/fetch]: Failed to fetch data");
     ///
-    /// while let Some(MyRow { name, no }) = cursor.next().await? {
+    /// while let Some(MyRow { name, no }) = cursor.next().await.expect("[main/fetch]: Failed to fetch data") {
     ///     println!("{name}: {no}");
     /// }
     /// # Ok(()) }
@@ -54,12 +54,18 @@ impl ProtonClient {
     /// ```no_run
     /// use proton::prelude::{ProtonClient, Result};
     ///
+    /// #[derive(clickhouse::Row, serde::Deserialize)]
+    /// struct MyRow{
+    ///     no: u32,
+    ///     name: String,
+    /// }
+    ///
     /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     ///
     /// let query = "SELECT ?fields FROM some WHERE no BETWEEN 0 AND 1";
-    /// let data = client.fetch_all(query).unwrap();
+    /// let data = client.fetch_all::<MyRow>(query).await.unwrap();
     ///
     /// println!("Received {} records", data.len());
     ///
@@ -95,7 +101,7 @@ impl ProtonClient {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     /// let query = "select count() from table(table_name)";
-    /// let item = client.fetch_one(query).unwrap();
+    /// let item = client.fetch_one::<u64>(query).await.unwrap();
     ///
     /// println!("Single result: {:#?}", item);
     ///
@@ -127,12 +133,18 @@ impl ProtonClient {
     /// ```no_run
     /// use proton::prelude::{ProtonClient, Result};
     ///
+    /// #[derive(clickhouse::Row, serde::Deserialize, Debug)]
+    /// struct MyRow{
+    ///     no: u32,
+    ///     name: String,
+    /// }
+    ///
     /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     /// let item_id = 42;
     /// let query = "SELECT ?fields FROM some WHERE no = 42";
-    /// let item = client.fetch_optional(query).unwrap();
+    /// let item = client.fetch_optional::<MyRow>(query).await.unwrap();
     ///
     /// match item {
     ///     Some(item) => println!("Fetched: {:#?}", item),

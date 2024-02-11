@@ -29,6 +29,12 @@ impl ProtonClient {
     ///     name: &'a str,
     /// }
     ///
+    /// impl<'a> MyRow<'a> {
+    ///     pub fn new(no: u32, name: &'a str) -> Self {
+    ///         Self { no, name }
+    ///     }
+    /// }
+    ///
     ///  async fn example() -> Result<()> {
     ///
     ///     let client = ProtonClient::new("http://localhost:8080");
@@ -68,8 +74,7 @@ impl ProtonClient {
     ///
     /// # Example
     /// ```no_run
-    ///  use proton::ProtonClient;
-    ///  use proton::prelude::{Result, Row};
+    ///  use proton::prelude::{ProtonClient,Result, Row};
     ///  use serde::{Deserialize, Serialize};
     ///
     /// #[derive(Debug, Row, Serialize, Deserialize)]
@@ -82,19 +87,20 @@ impl ProtonClient {
     ///
     ///     let client = ProtonClient::new("http://localhost:8080");
     ///      let mut inserter = client
-    ///         .inserter("table_name")?
-    ///         .with_max_rows(100_000); //  The maximum number of rows in one INSERT statement.
+    ///         .inserter("table_name")
+    ///         .await
+    ///         .expect("Failed to create inserter")
+    ///         .with_max_entries(100_000); //  The maximum number of rows in one INSERT statement.
     ///
     ///     for i in 0..1000 {
-    ///         inserter.write(&MyRow { no: i, name: "foo" })?;
-    ///         inserter.commit().await?; // Checks limits and ends a current INSERT if they are reached.
+    ///         inserter.write(&MyRow { no: i, name: "foo" }).await.expect("Failed to insert row");
+    ///         inserter.commit().await.expect("Failed to commit"); // Checks limits and ends a current INSERT if they are reached.
     ///     }
     ///
-    ///     inserter.end().await?; // Ends a current INSERT and whole Inserter unconditionally.
+    ///     inserter.end().await.expect("Failed to end inserter"); // Ends a current INSERT and whole Inserter unconditionally.
     ///
     ///     Ok(())
     ///  }
-    ///
     ///
     pub async fn inserter<T: Row>(&self, table: &str) -> Result<inserter::Inserter<T>> {
         return match self.client.inserter(table) {
