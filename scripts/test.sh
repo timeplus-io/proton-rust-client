@@ -7,9 +7,6 @@ set -o pipefail
 # https://nexte.st/book/installing-from-source.html
 # cargo install cargo-nextest --locked
 
-#RUSTFLAGS='-C target-cpu=native' cargo test --doc --release
-#
-## https://users.rust-lang.org/t/how-to-best-ensure-target-cpu-native/53167
-#RUSTFLAGS='-C target-cpu=native' cargo nextest run --release
+command cargo test doc
 
 cargo nextest run
