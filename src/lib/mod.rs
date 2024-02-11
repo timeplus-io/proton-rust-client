@@ -18,7 +18,7 @@ pub struct ProtonClient {
 
 impl ProtonClient {
     /// Creates a new Proton client instance.
-    ///
+    ///`
     /// # Arguments
     ///
     /// * `url` - The base URL of the Proton API endpoint.

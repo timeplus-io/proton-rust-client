@@ -22,9 +22,10 @@ impl ProtonClient {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     ///
-    /// let mut cursor = client
-    ///     .query("SELECT ?fields FROM some WHERE no BETWEEN 0 AND 1")
-    ///     .fetch::<MyRow<'_>>()?;
+    ///  let mut cursor = client
+    ///     .fetch::<MyRow<'_>>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
+    ///     .await
+    ///     .expect("[main/fetch]: Failed to fetch data");
     ///
     /// while let Some(MyRow { name, no }) = cursor.next().await? {
     ///     println!("{name}: {no}");
@@ -39,6 +40,7 @@ impl ProtonClient {
     }
 
     /// Executes the query and returns all the generated results, collected into a Vec.
+    ///
     /// Note that T must be owned.
     ///
     /// # Errors

@@ -1,9 +1,9 @@
 use proton::ProtonClient;
 
-#[test]
-fn test_default() {
+#[tokio::test]
+async fn test_default() {
     let client = ProtonClient::default();
 
-    assert_eq!(client.url(), "http://localhost:8123");
-
+    let result = client.url().await;
+    assert_eq!(result, "http://localhost:8123");
 }

@@ -8,7 +8,21 @@ impl ProtonClient {
     ///
     /// For details on how to use the client, see the [clickhouse client crate](https://github.com/loyd/clickhouse.rs).
     ///
-    pub fn client(&self) -> &Client {
+    /// # Example
+    /// ```no_run
+    /// use proton::prelude::{ProtonClient, Result};
+    ///
+    /// async fn example() -> Result<()> {
+    ///
+    /// let client = ProtonClient::new("https://api.proton.com");
+    ///
+    /// let url = client.client().await;
+    ///
+    /// Ok(())
+    /// }
+    /// ```
+    ///
+    pub async fn client(&self) -> &Client {
         &self.client
     }
 
@@ -19,16 +33,21 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::ProtonClient;
+    /// use proton::prelude::{ProtonClient, Result};
+    ///
+    /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("https://api.proton.com");
     ///
-    /// let url = client.url();
+    /// let url = client.url().await;
     ///
     /// assert_eq!(url, "https://api.proton.com");
+    ///
+    /// Ok(())
+    /// }
     /// ```
     ///
-    pub fn url(&self) -> &str {
+    pub async fn url(&self) -> &str {
         &self.url
     }
 }
