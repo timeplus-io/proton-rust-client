@@ -1,4 +1,4 @@
-use proton::prelude::ProtonClientError;
+use proton_client::prelude::ProtonClientError;
 
 #[test]
 fn test_proton_client_errors() {

@@ -1,4 +1,4 @@
-use proton::ProtonClient;
+use proton_client::ProtonClient;
 
 #[test]
 fn test_display() {

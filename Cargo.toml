@@ -4,24 +4,24 @@ version = "0.1.0"
 edition = "2021"
 
 
-[[bin]]
-name = "prepare"
-path = "src/bin/prepare.rs"
-
-
-[[bin]]
-name = "main"
-path = "src/bin/main.rs"
-
-
-[[bin]]
-name = "cleanup"
-path = "src/bin/cleanup.rs"
-
-
 [lib]
-name = "proton"
+name = "proton_client"
 path = "src/lib/mod.rs"
+
+
+[[example]]
+name = "prepare"
+path = "examples/prepare/main.rs"
+
+
+[[example]]
+name = "query"
+path = "examples/query/main.rs"
+
+
+[[example]]
+name = "remove"
+path = "examples/remove/main.rs"
 
 
 [dependencies]

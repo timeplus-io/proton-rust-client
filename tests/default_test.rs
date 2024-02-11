@@ -1,4 +1,4 @@
-use proton::ProtonClient;
+use proton_client::ProtonClient;
 
 #[tokio::test]
 async fn test_default() {

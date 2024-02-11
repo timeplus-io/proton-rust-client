@@ -19,8 +19,8 @@ impl ProtonClient {
     ///
     /// # Example
     /// ```no_run
-    ///  use proton::ProtonClient;
-    ///  use proton::prelude::{Result, Row};
+    ///  use proton_client::ProtonClient;
+    ///  use proton_client::prelude::{Result, Row};
     ///  use serde::{Deserialize, Serialize};
     ///
     /// #[derive(Debug, Row, Serialize, Deserialize)]
@@ -74,7 +74,7 @@ impl ProtonClient {
     ///
     /// # Example
     /// ```no_run
-    ///  use proton::prelude::{ProtonClient,Result, Row};
+    ///  use proton_client::prelude::{ProtonClient,Result, Row};
     ///  use serde::{Deserialize, Serialize};
     ///
     /// #[derive(Debug, Row, Serialize, Deserialize)]

@@ -1,4 +1,4 @@
-use proton::prelude::{ProtonClient, Result};
+use proton_client::prelude::{ProtonClient, Result};
 
 const FN_NAME: &str = "[prepare]:";
 

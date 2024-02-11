@@ -1,4 +1,4 @@
-use proton::prelude::{ProtonClient, Result, Row};
+use proton_client::prelude::{ProtonClient, Result, Row};
 use serde::{Deserialize, Serialize};
 
 const FN_NAME: &str = "[prepare]:";

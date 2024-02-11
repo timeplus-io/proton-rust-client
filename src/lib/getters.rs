@@ -10,7 +10,7 @@ impl ProtonClient {
     ///
     /// # Example
     /// ```no_run
-    /// use proton::prelude::{ProtonClient, Result};
+    /// use proton_client::prelude::{ProtonClient, Result};
     ///
     /// async fn example() -> Result<()> {
     ///
@@ -33,7 +33,7 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::prelude::{ProtonClient, Result};
+    /// use proton_client::prelude::{ProtonClient, Result};
     ///
     /// async fn example() -> Result<()> {
     ///

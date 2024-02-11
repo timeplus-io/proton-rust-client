@@ -9,8 +9,8 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    ///  use proton::ProtonClient;
-    ///  use proton::prelude::Result;
+    ///  use proton_client::ProtonClient;
+    ///  use proton_client::prelude::Result;
     ///
     ///  async fn example() -> Result<()> {
     ///
@@ -52,7 +52,7 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::prelude::{ProtonClient, Result};
+    /// use proton_client::prelude::{ProtonClient, Result};
     ///
     /// #[derive(clickhouse::Row, serde::Deserialize)]
     /// struct MyRow{
@@ -95,7 +95,7 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::prelude::{ProtonClient, Result};
+    /// use proton_client::prelude::{ProtonClient, Result};
     ///
     /// async fn example() -> Result<()> {
     ///
@@ -131,7 +131,7 @@ impl ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::prelude::{ProtonClient, Result};
+    /// use proton_client::prelude::{ProtonClient, Result};
     ///
     /// #[derive(clickhouse::Row, serde::Deserialize, Debug)]
     /// struct MyRow{

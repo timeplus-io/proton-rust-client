@@ -9,7 +9,7 @@ impl Display for ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::ProtonClient;
+    /// use proton_client::ProtonClient;
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     ///

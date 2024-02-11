@@ -14,7 +14,7 @@ impl Default for ProtonClient {
     /// # Example
     ///
     /// ```no_run
-    /// use proton::ProtonClient;
+    /// use proton_client::ProtonClient;
     ///
     /// let proton = ProtonClient::default();
     /// ```

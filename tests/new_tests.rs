@@ -1,4 +1,4 @@
-use proton::prelude::ProtonClient;
+use proton_client::prelude::ProtonClient;
 
 #[tokio::test]
 async fn test_new() {

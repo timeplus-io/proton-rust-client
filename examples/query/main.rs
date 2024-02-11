@@ -1,6 +1,6 @@
 use clickhouse::Row;
-use proton::prelude::Result;
-use proton::ProtonClient;
+use proton_client::prelude::Result;
+use proton_client::ProtonClient;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Row, Serialize, Deserialize)]

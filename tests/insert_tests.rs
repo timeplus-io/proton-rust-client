@@ -1,5 +1,5 @@
 use clickhouse_derive::Row;
-use proton::ProtonClient;
+use proton_client::ProtonClient;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Row, Serialize, Deserialize)]

@@ -35,7 +35,19 @@ Add the following to your Cargo.toml:
 proton_client = { git = "https://github.com/marvin-hansen/proton-rust-client.git" }
 ```
 
-[//]: # ( After Crate release on crates.io)
+[//]: # (AFTER the release of the package on crates.io)
+
+[//]: # (Add the proton client to your project by running in a terminal:)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (cargo add proton_client)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (of by adding the following to your Cargo.toml:)
 
 [//]: # (```)
 
@@ -49,7 +61,7 @@ proton_client = { git = "https://github.com/marvin-hansen/proton-rust-client.git
 ## Use ProtonClient
 
 ```Rust
-use proton::prelude::{ProtonClient, Result};
+use proton_client::prelude::{ProtonClient, Result};
 
 const FN_NAME: &str = "[prepare]:";
 
@@ -71,78 +83,29 @@ async fn main() -> Result<()> {
 ```
 
 
-## Run the client code example
+## What's next?
 
-1) Create a stream and insert some data
-
-```
-cargo run --bin prepare
-```
-
-Expected output
-
-```
-[prepare]: Start
-[prepare]:Build client
-[prepare]: Create stream if not exists
-[prepare]:Insert data
-[prepare]:Count inserted data
-[prepare]:Inserted data: 1000
-[prepare]: Stop
-```
-
-2) Stream some data (fetch) and load all data at once (fetch_all)
-
-```
-cargo run --bin main
-```
-
-Expected output
-
-```
-[main]:Build client
-[main]:Fetch data
-MyRow { no: 500, name: "foo" }
-MyRow { no: 501, name: "foo" }
-MyRow { no: 502, name: "foo" }
-MyRow { no: 503, name: "foo" }
-MyRow { no: 504, name: "foo" }
-[main]:Fetch all data
-[MyRowOwned { no: 500, name: "foo" }, MyRowOwned { no: 501, name: "foo" }, MyRowOwned { no: 502, name: "foo" }, MyRowOwned { no: 503, name: "foo" }, MyRowOwned { no: 504, name: "foo" }]
-[main]: Stop
-```
-
-3) Cleanup and delete stream
+To see more examples of using Proton, check out the [examples](examples) folder.
 
 
-```
-cargo run --bin cleanup
-```
+## Documentation
 
-Expected output
+You find the full documentation for Proton at [docs.timeplus.com](https://docs.timeplus.com/proton) alongside documentation for the Timeplus (Cloud and BYOC) platform.
 
-```
-[prepare]: Start
-[prepare]:Build client
-[prepare]: Delete Stream
-[prepare]: Stop
-```
+We also have a [FAQ](https://docs.timeplus.com/proton-faq/) for detailing how we chose Apache License 2.0, how Proton is related to ClickHouse, what features are available in Proton versus Timeplus, and more.
 
 
-## Cargo & Make
+## Contributing
 
-Make sure all cargo tools are installed. To do so, just run ```make install```
-After all tools have been installed, the following commands are ready to use.
-```
-    make build   	Builds the code base incrementally (fast) for dev.
-    make check   	Checks the code base for security vulnerabilities.
-    make clean   	Cleans generated files and folders.
-    make doc   		Builds, tests, and opens api docs in a browser.
-    make fix   		Fixes linting issues as reported by clippy.
-    make format   	Formats call code according to cargo fmt style.
-    make install   	Tests and installs all make script dependencies.
-    make release   	Builds the code base for release.
-    make test   	Tests across all crates.
-    make run   		Runs the default binary.
-    make update   	Update rust, pull git, and build the project.
-```
+We welcome your contributions! If you are looking for issues to work on, try looking at [the issue list](FIXLINK).
+
+## Need help?
+
+Join our [Timeplus Community Slack](https://timeplus.com/slack) to connect with Timeplus engineers and other Proton users.
+
+For filing bugs, suggesting improvements, or requesting new features, see the [open issues](FIXLINK) here on GitHub.
+
+## Licensing
+
+Proton Rust Client uses Apache License 2.0. See details in the [LICENSE](LICENSE).
+
