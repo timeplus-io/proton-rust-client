@@ -28,7 +28,7 @@ impl ProtonClient {
     ///  let client = ProtonClient::new("http://localhost:8123");
     ///
     ///      client
-    ///         .execute_query("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
+    ///         .execute_query("CREATE STREAM IF NOT EXISTS test_stream(no uint32, name string) ORDER BY no")
     ///         .await
     ///         .expect("Failed to execute query");
     ///

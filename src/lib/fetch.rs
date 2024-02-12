@@ -23,7 +23,7 @@ impl ProtonClient {
     /// let client = ProtonClient::new("http://localhost:8123");
     ///
     ///  let mut cursor = client
-    ///     .fetch::<MyRow<'_>>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
+    ///     .fetch::<MyRow<'_>>("SELECT ?fields from table(test_stream) WHERE no BETWEEN 500 AND 504")
     ///     .await
     ///     .expect("[main/fetch]: Failed to fetch data");
     ///
@@ -64,7 +64,7 @@ impl ProtonClient {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     ///
-    /// let query = "SELECT ?fields FROM some WHERE no BETWEEN 0 AND 1";
+    /// let query = "SELECT ?fields FROM test_stream WHERE no BETWEEN 0 AND 1";
     /// let data = client.fetch_all::<MyRow>(query).await.unwrap();
     ///
     /// println!("Received {} records", data.len());
@@ -100,7 +100,7 @@ impl ProtonClient {
     /// async fn example() -> Result<()> {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
-    /// let query = "select count() from table(table_name)";
+    /// let query = "select count() from table(test_stream)";
     /// let item = client.fetch_one::<u64>(query).await.unwrap();
     ///
     /// println!("Single result: {:#?}", item);
@@ -143,7 +143,7 @@ impl ProtonClient {
     ///
     /// let client = ProtonClient::new("http://localhost:8123");
     /// let item_id = 42;
-    /// let query = "SELECT ?fields FROM some WHERE no = 42";
+    /// let query = "SELECT ?fields FROM test_stream WHERE no = 42";
     /// let item = client.fetch_optional::<MyRow>(query).await.unwrap();
     ///
     /// match item {

@@ -17,12 +17,12 @@ impl<'a> MyRow<'a> {
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("{} Start", FN_NAME);
+    println!("{}Start", FN_NAME);
 
     println!("{}Build client", FN_NAME);
     let client = ProtonClient::new("http://localhost:8123");
 
-    println!("{} Create stream if not exists", FN_NAME);
+    println!("{}Create stream if not exists", FN_NAME);
     create_stream(&client)
         .await
         .expect("[main]: Failed to create Stream");
@@ -39,19 +39,19 @@ async fn main() -> Result<()> {
 
     println!("{}Inserted data: {}", FN_NAME, count);
 
-    println!("{} Stop", FN_NAME);
+    println!("{}Stop", FN_NAME);
     Ok(())
 }
 
 pub async fn create_stream(client: &ProtonClient) -> Result<()> {
     client
-        .execute_query("CREATE STREAM IF NOT EXISTS some(no uint32, name string) ORDER BY no")
+        .execute_query("CREATE STREAM IF NOT EXISTS test_stream(no uint32, name string) ORDER BY no")
         .await
 }
 
 pub async fn insert(client: &ProtonClient) -> Result<()> {
     let mut insert = client
-        .insert("some")
+        .insert("test_stream")
         .await
         .expect("[main/insert]: Failed to build inserter for table some");
 
@@ -70,7 +70,7 @@ pub async fn insert(client: &ProtonClient) -> Result<()> {
 pub async fn select_count(client: &ProtonClient) -> Result<u64> {
     let count = client
         .clone()
-        .fetch_one("select count() from table(some)")
+        .fetch_one("select count() from table(test_stream)")
         .await
         .expect("[main/select_count]: Failed to fetch count()");
 

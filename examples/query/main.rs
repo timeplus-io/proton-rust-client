@@ -50,13 +50,13 @@ async fn main() -> Result<()> {
         .await
         .expect("[main/fetch_all]: Failed to fetch data");
 
-    println!("{} Stop", FN_NAME);
+    println!("{}Stop", FN_NAME);
     Ok(())
 }
 
 pub async fn fetch(client: &ProtonClient) -> clickhouse::error::Result<()> {
     let mut cursor = client
-        .fetch::<MyRow<'_>>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
+        .fetch::<MyRow<'_>>("SELECT ?fields from test_stream WHERE no BETWEEN 500 AND 504")
         .await
         .expect("[main/fetch]: Failed to fetch data");
 
@@ -69,7 +69,7 @@ pub async fn fetch(client: &ProtonClient) -> clickhouse::error::Result<()> {
 
 pub async fn fetch_all(client: &ProtonClient) -> clickhouse::error::Result<()> {
     let vec = client
-        .fetch_all::<MyRowOwned>("SELECT ?fields from table(some) WHERE no BETWEEN 500 AND 504")
+        .fetch_all::<MyRowOwned>("SELECT ?fields from test_stream WHERE no BETWEEN 500 AND 504")
         .await
         .expect("[main/fetch_all]: Failed to fetch all");
 

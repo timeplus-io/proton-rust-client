@@ -4,17 +4,17 @@ const FN_NAME: &str = "[prepare]:";
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("{} Start", FN_NAME);
+    println!("{}Start", FN_NAME);
 
     println!("{}Build client", FN_NAME);
     let client = ProtonClient::new("http://localhost:8123");
 
-    println!("{} Delete Stream", FN_NAME);
+    println!("{}Delete Stream", FN_NAME);
     delete_stream(&client)
         .await
         .expect("[main]: Failed to delete Stream");
 
-    println!("{} Stop", FN_NAME);
+    println!("{}Stop", FN_NAME);
 
     Ok(())
 }
@@ -22,5 +22,5 @@ async fn main() -> Result<()> {
 pub async fn delete_stream(client: &ProtonClient) -> Result<()> {
     //  Drop a stream
     // https://docs.timeplus.com/proton-drop-stream
-    client.execute_query("DROP STREAM some").await
+    client.execute_query("DROP STREAM IF EXISTS test_stream").await
 }

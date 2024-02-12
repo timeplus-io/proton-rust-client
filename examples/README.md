@@ -5,6 +5,8 @@
 
 ## Install Proton
 
+Please install Proton as a standalone server or via Docker. Make sure port 8123 is exposed for `pront-rust-client` to connect and run SQL.
+
 ### As a single binary
 
 On Linux or Mac, you can install it via `curl https://install.timeplus.com | sh`
@@ -18,10 +20,10 @@ In a separate terminal, connect to the server via `proton client` (Note: If you 
 ### As a Docker container
 
 ```bash
-docker run -d --pull always --name proton ghcr.io/timeplus-io/proton:latest
+docker run -d --pull always --name proton -p 8123:8123 -p 8463:8463 ghcr.io/timeplus-io/proton:latest
 ```
 
-Proton is automatically started. Open the terminal of the container, and run `proton client`
+Proton is automatically started with port 8123 and 8463 exposed. Open the terminal of the container, and run `proton client`
 
 
 For detailed usage and more information, check out the documentation: https://docs.timeplus.com/proton
@@ -58,7 +60,7 @@ const FN_NAME: &str = "[prepare]:";
 async fn main() -> Result<()> {
     println!("{} Start", FN_NAME);
 
-    println!("{}Build client", FN_NAME);
+    println!("{} Build client", FN_NAME);
     let client = ProtonClient::new("http://localhost:8123");
 
     println!("{} Create stream if not exists", FN_NAME);
@@ -74,28 +76,30 @@ async fn main() -> Result<()> {
 
 ## Run the client code example
 
+In the root folder of `protno-rust-client`
+
 1) Create a stream and insert some data
 
 ```
-cargo run --bin prepare
+cargo run --example prepare
 ```
 
 Expected output
 
 ```
-[prepare]: Start
+[prepare]:Start
 [prepare]:Build client
-[prepare]: Create stream if not exists
+[prepare]:Create stream if not exists
 [prepare]:Insert data
 [prepare]:Count inserted data
 [prepare]:Inserted data: 1000
-[prepare]: Stop
+[prepare]:Stop
 ```
 
 2) Stream some data (fetch) and load all data at once (fetch_all)
 
 ```
-cargo run --bin main
+cargo run --example query
 ```
 
 Expected output
@@ -110,21 +114,21 @@ MyRow { no: 503, name: "foo" }
 MyRow { no: 504, name: "foo" }
 [main]:Fetch all data
 [MyRowOwned { no: 500, name: "foo" }, MyRowOwned { no: 501, name: "foo" }, MyRowOwned { no: 502, name: "foo" }, MyRowOwned { no: 503, name: "foo" }, MyRowOwned { no: 504, name: "foo" }]
-[main]: Stop
+[main]:Stop
 ```
 
 3) Cleanup and delete stream
 
 
 ```
-cargo run --bin cleanup
+cargo run --example remove
 ```
 
 Expected output
 
 ```
-[prepare]: Start
+[prepare]:Start
 [prepare]:Build client
-[prepare]: Delete Stream
-[prepare]: Stop
+[prepare]:Delete Stream
+[prepare]:Stop
 ```
