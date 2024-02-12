@@ -14,6 +14,8 @@ This client uses https://crates.io/crates/clickhouse as a dependency.
 
 ## Install Proton
 
+Please install Proton as a standalone server or via Docker. Make sure port 8123 is exposed for `pront-rust-client` to connect and run SQL.
+
 ### As a single binary
 
 On Linux or Mac, you can install it via `curl https://install.timeplus.com | sh`
@@ -27,11 +29,10 @@ In a separate terminal, connect to the server via `proton client` (Note: If you 
 ### As a Docker container
 
 ```bash
-docker run -d --pull always --name proton ghcr.io/timeplus-io/proton:latest
+docker run -d --pull always --name proton -p 8123:8123 -p 8463:8463 ghcr.io/timeplus-io/proton:latest
 ```
 
-Proton is automatically started. Open the terminal of the container, and run `proton client`
-
+Proton is automatically started with port 8123 and 8463 exposed. Open the terminal of the container, and run `proton client`
 
 For detailed usage and more information, check out the documentation: https://docs.timeplus.com/proton
 
