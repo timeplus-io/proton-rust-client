@@ -52,10 +52,10 @@ impl ProtonClient {
     ///
     ///
     pub async fn insert<T: Row>(&self, table: &str) -> Result<insert::Insert<T>> {
-        return match self.client.insert(table) {
+        match self.client.insert(table) {
             Ok(insert) => Ok(insert),
             Err(err) => Err(ProtonClientError::InsertFailed(err.to_string())),
-        };
+        }
     }
 }
 
@@ -103,9 +103,9 @@ impl ProtonClient {
     ///  }
     ///
     pub async fn inserter<T: Row>(&self, table: &str) -> Result<inserter::Inserter<T>> {
-        return match self.client.inserter(table) {
+        match self.client.inserter(table) {
             Ok(inserter) => Ok(inserter),
             Err(err) => Err(ProtonClientError::InserterFailed(err.to_string())),
-        };
+        }
     }
 }
