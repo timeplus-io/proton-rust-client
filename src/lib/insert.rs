@@ -37,7 +37,7 @@ impl ProtonClient {
     ///
     ///  async fn example() -> Result<()> {
     ///
-    ///     let client = ProtonClient::new("http://localhost:8080");
+    ///     let client = ProtonClient::new("http://localhost:8123");
     ///     let mut insert = client.insert("table_name").await?;
     ///
     ///    insert
@@ -85,7 +85,7 @@ impl ProtonClient {
     ///
     ///  async fn example() -> Result<()> {
     ///
-    ///     let client = ProtonClient::new("http://localhost:8080");
+    ///     let client = ProtonClient::new("http://localhost:8123");
     ///      let mut inserter = client
     ///         .inserter("table_name")
     ///         .await

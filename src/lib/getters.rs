@@ -14,7 +14,7 @@ impl ProtonClient {
     ///
     /// async fn example() -> Result<()> {
     ///
-    /// let client = ProtonClient::new("https://api.proton.com");
+    /// let client = ProtonClient::new("http://localhost:8123");
     ///
     /// let url = client.client().await;
     ///
@@ -37,11 +37,11 @@ impl ProtonClient {
     ///
     /// async fn example() -> Result<()> {
     ///
-    /// let client = ProtonClient::new("https://api.proton.com");
+    /// let client = ProtonClient::new("http://localhost:8123");
     ///
     /// let url = client.url().await;
     ///
-    /// assert_eq!(url, "https://api.proton.com");
+    /// assert_eq!(url, "http://localhost:8123");
     ///
     /// Ok(())
     /// }
