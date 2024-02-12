@@ -22,5 +22,7 @@ async fn main() -> Result<()> {
 pub async fn delete_stream(client: &ProtonClient) -> Result<()> {
     //  Drop a stream
     // https://docs.timeplus.com/proton-drop-stream
-    client.execute_query("DROP STREAM IF EXISTS test_stream").await
+    client
+        .execute_query("DROP STREAM IF EXISTS test_stream")
+        .await
 }
