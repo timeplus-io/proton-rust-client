@@ -35,9 +35,9 @@ impl ProtonClient {
     ///   Ok(())
     /// }
     pub async fn execute_query(&self, query: &str) -> alias::Result<()> {
-        return match self.client.query(query).execute().await {
+        match self.client.query(query).execute().await {
             Ok(_) => Ok(()),
             Err(e) => Err(ProtonClientError::QueryFailed(e.to_string())),
-        };
+        }
     }
 }

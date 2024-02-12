@@ -3,6 +3,7 @@ SHELL := /usr/bin/env bash
 
 .PHONY: help
 help:
+	@echo '    make example     	Run the example code.'
 	@echo '    make build   	Builds the code base incrementally (fast) for dev.'
 	@echo '    make check   	Checks the code base for security vulnerabilities.'
 	@echo '    make clean   	Cleans generated files and folders.'
@@ -37,6 +38,11 @@ clean:
 .PHONY: doc
 doc:
 	@source scripts/doc.sh
+
+
+.PHONY: example
+example:
+	@source scripts/example.sh
 
 
 .PHONY: fix

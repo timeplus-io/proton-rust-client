@@ -33,10 +33,10 @@ impl ProtonClient {
     /// # Ok(()) }
     /// ```
     pub async fn fetch<T: Row>(&self, query: &str) -> Result<RowCursor<T>> {
-        return match self.client.query(query).fetch::<T>() {
+        match self.client.query(query).fetch::<T>() {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchFailed(e.to_string())),
-        };
+        }
     }
 
     /// Executes the query and returns all the generated results, collected into a Vec.
@@ -76,10 +76,10 @@ impl ProtonClient {
     where
         T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client.query(query).fetch_all::<T>().await {
+        match self.client.query(query).fetch_all::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchAllFailed(e.to_string())),
-        };
+        }
     }
 
     /// Executes the query and returns just a single row.
@@ -112,10 +112,10 @@ impl ProtonClient {
     where
         T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client.query(query).fetch_one::<T>().await {
+        match self.client.query(query).fetch_one::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchOneFailed(e.to_string())),
-        };
+        }
     }
 
     /// Executes the query and returns at most one row.
@@ -158,9 +158,9 @@ impl ProtonClient {
     where
         T: Row + for<'b> Deserialize<'b>,
     {
-        return match self.client.query(query).fetch_optional::<T>().await {
+        match self.client.query(query).fetch_optional::<T>().await {
             Ok(cursor) => Ok(cursor),
             Err(e) => Err(ProtonClientError::FetchOptionalFailed(e.to_string())),
-        };
+        }
     }
 }

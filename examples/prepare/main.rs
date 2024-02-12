@@ -45,7 +45,9 @@ async fn main() -> Result<()> {
 
 pub async fn create_stream(client: &ProtonClient) -> Result<()> {
     client
-        .execute_query("CREATE STREAM IF NOT EXISTS test_stream(no uint32, name string) ORDER BY no")
+        .execute_query(
+            "CREATE STREAM IF NOT EXISTS test_stream(no uint32, name string) ORDER BY no",
+        )
         .await
 }
 
