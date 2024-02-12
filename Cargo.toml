@@ -11,7 +11,7 @@ description = "Client for Timeplus Proton, a streaming SQL engine"
 documentation = "https://docs.rs/proton_client"
 homepage = "https://github.com/timeplus-io/proton-rust-client"
 repository = "https://github.com/timeplus-io/proton-rust-client"
-keywords = ["proton", "timeplus", "streaming", "sql", "database", "timeseries"]
+keywords = ["proton", "timeplus", "streaming", "sql", "database"]
 
 [lib]
 name = "proton_client"
