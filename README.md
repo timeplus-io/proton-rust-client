@@ -78,21 +78,28 @@ const FN_NAME: &str = "[prepare]:";
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    println!("{} Start", FN_NAME);
+    println!("{}Start", FN_NAME);
 
     println!("{}Build client", FN_NAME);
     let client = ProtonClient::new("http://localhost:8123");
 
-    println!("{} Create stream if not exists", FN_NAME);
+    println!("{}Create stream if not exists", FN_NAME);
     create_stream(&client)
         .await
         .expect("[main]: Failed to create Stream");
 
-    println!("{} Stop", FN_NAME);
+    println!("{}Stop", FN_NAME);
     Ok(())
- }
+}
+
+pub async fn create_stream(client: &ProtonClient) -> Result<()> {
+     client
+         .execute_query("CREATE STREAM IF NOT EXISTS test_stream(no uint32, name string) ORDER BY no")
+         .await
+}
 ```
 
+Check more examples [here](examples).
 
 ## What's next?
 
