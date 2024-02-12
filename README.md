@@ -45,34 +45,19 @@ For detailed usage and more information, check out the documentation: https://do
 
 ## Install ProtonClient
 
-Add the following to your Cargo.toml:
+Add the proton client to your project by running in a terminal:
+
+```
+cargo add proton_client
+```
+
+or by adding the following to your Cargo.toml:
 
 ```
 [dependencies]
-proton_client = { git = "https://github.com/timeplus-io/proton-rust-client.git" }
+
+proton_client =  { version = "0.1.0"}
 ```
-
-[//]: # (AFTER the release of the package on crates.io)
-
-[//]: # (Add the proton client to your project by running in a terminal:)
-
-[//]: # ()
-[//]: # (```)
-
-[//]: # (cargo add proton_client)
-
-[//]: # (```)
-
-[//]: # ()
-[//]: # (of by adding the following to your Cargo.toml:)
-
-[//]: # (```)
-
-[//]: # ([dependencies])
-
-[//]: # (proton_client =  { version = "0.1.0"})
-
-[//]: # (```)
 
 
 ## Use ProtonClient
