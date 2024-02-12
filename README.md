@@ -2,7 +2,7 @@
 [//]: # (SPDX-License-Identifier: Apache-2.0)
 [//]: # (---)
 
-#  Rust Client for Proton
+#  Rust Client for Timeplus Proton
 
 Rust client for [Timeplus Proton](https://github.com/timeplus-io/proton).
 
