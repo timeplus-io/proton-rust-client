@@ -99,7 +99,31 @@ pub async fn create_stream(client: &ProtonClient) -> Result<()> {
 }
 ```
 
-Check more examples [here](examples).
+## Run the examples 
+
+```bash
+make example
+```
+
+Which shows:
+
+```text
+-----------------------------------------
+Select the number of the example to run:
+-----------------------------------------
+1) prepare: Prepare Proton for the examples: create table & load data
+2) query: Query Proton with sample queries
+3) remove: Cleanup Proton and delete streams
+4) quit: Exit
+
+-----------------------------------------
+Make sure Proton is running
+-----------------------------------------
+```
+
+Please select the number of the example to run. Also,
+first run the prepare example to prepare Proton for the query example.
+See the code of all examples [here](examples).
 
 ## What's next?
 
