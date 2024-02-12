@@ -5,7 +5,13 @@
 
 ## Install Proton
 
-Please install Proton as a standalone server or via Docker. Make sure port 8123 is exposed for `pront-rust-client` to connect and run SQL.
+Please install Proton as a standalone server or via Docker. Make sure either port 8123 or 3218 is exposed for `pront-rust-client` to connect and run SQL.
+* 8123 is the port to run DDL and queries in historical mode
+* 3218 is the port to run DDL and quries in streaming mode by default. You can still wrap the stream with `table(..)` function to query them in historical mode.
+
+Learn more
+* [SQL syntax](https://docs.timeplus.com/query-syntax)
+* [Proton ports](https://docs.timeplus.com/proton-ports)
 
 ### As a single binary
 
