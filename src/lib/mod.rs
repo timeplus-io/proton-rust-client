@@ -42,7 +42,7 @@ impl ProtonClient {
     pub fn new(url: &str) -> Self {
         let client = Client::default().with_url(url.to_string());
         let client_without_compression =
-            Client::with_compression(client.clone(), Compression::None).with_url(url.to_string());
+            Client::with_compression(client.clone(), Compression::None);
         let url = url.to_string();
         Self {
             client,
