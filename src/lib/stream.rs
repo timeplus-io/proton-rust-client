@@ -25,7 +25,7 @@ impl ProtonClient {
     ///     name: String,
     /// }
     ///
-    /// let client = ProtonClient::new("http://localhost:3128");
+    /// let client = ProtonClient::new("http://localhost:3218");
     ///
     ///  let mut cursor = client
     ///     .fetch_stream::<MyRow>("SELECT ?fields from (test_stream) WHERE no BETWEEN 500 AND 504")
