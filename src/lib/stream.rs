@@ -20,15 +20,15 @@ impl ProtonClient {
     ///  async fn example() -> Result<()> {
     ///
     /// #[derive(Debug, clickhouse::Row, serde::Deserialize)]
-    /// struct MyRow<'a> {
+    /// struct MyRow {
     ///     no: u32,
-    ///     name: &'a str,
+    ///     name: String,
     /// }
     ///
     /// let client = ProtonClient::new("http://localhost:3128");
     ///
     ///  let mut cursor = client
-    ///     .fetch_stream::<MyRow<'_>>("SELECT ?fields from (test_stream) WHERE no BETWEEN 500 AND 504")
+    ///     .fetch_stream::<MyRow>("SELECT ?fields from (test_stream) WHERE no BETWEEN 500 AND 504")
     ///     .await
     ///     .expect("[main/fetch]: Failed to fetch stream data");
     ///
