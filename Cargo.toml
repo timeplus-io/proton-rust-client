@@ -34,11 +34,11 @@ path = "examples/remove/main.rs"
 
 
 [dependencies]
-clickhouse = { version = "0.12", features = ["watch"] }
+clickhouse = { version = "0.13", features = ["watch"] }
 clickhouse-derive = { version = "0.2" }
 tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 serde = { version = "1.0.196", features = ["derive"] }
 
 
 [dev-dependencies]
-clickhouse = { version = "0.12", features = ["test-util"] }
+clickhouse = { version = "0.13", features = ["test-util"] }
