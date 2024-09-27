@@ -90,7 +90,7 @@ impl ProtonClient {
     ///         .inserter("table_name")
     ///         .await
     ///         .expect("Failed to create inserter")
-    ///         .with_max_entries(100_000); //  The maximum number of rows in one INSERT statement.
+    ///         .with_max_rows(100_000); //  The maximum number of rows in one INSERT statement.
     ///
     ///     for i in 0..1000 {
     ///         inserter.write(&MyRow { no: i, name: "foo" }).await.expect("Failed to insert row");
