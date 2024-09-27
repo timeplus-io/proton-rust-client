@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Audit Check # https://github.com/rustsec/audit-check/issues/2
-        uses: rustsec/audit-check@v2
+      - name: Audit Check
+        uses: rustsec/audit-check@v2.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
