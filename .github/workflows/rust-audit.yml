@@ -16,7 +16,7 @@ jobs:
   security_audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: cargo update
       - name: Audit Check
         uses: rustsec/audit-check@v2.0.0
